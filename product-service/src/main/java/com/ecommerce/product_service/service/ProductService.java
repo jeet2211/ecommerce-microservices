@@ -1,0 +1,16 @@
+package com.ecommerce.product_service.service;
+
+import com.ecommerce.product_service.dto.ProductDto;
+import org.springframework.data.domain.Page;
+
+public interface ProductService {
+    ProductDto createProduct(ProductDto dto);
+    ProductDto updateProduct(Long id,ProductDto dto);
+    void deleteProduct(Long id);
+    ProductDto getProductById(Long id);
+    Page<ProductDto> getAllProducts(int page, int size, String sortBy, String sortDir );
+    Page<ProductDto> searchProduct(String keyword, int page, int size);
+    Page<ProductDto> filterProducts(Long categoryId, Double minPrice, Double maxPrice, int page, int size);
+    Page<ProductDto> advanceFilter(String keyword, Long categoryId, Double minPrice, Double maxPrice, int page, int size, String sortBy, String sortDir);
+
+}
