@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/products")
@@ -59,5 +62,12 @@ public class ProductController {
                                                            ){
         return ResponseEntity.ok(productService.filterProducts(categoryId, minPrice, maxPrice, page, size));
     }
+
+    @PostMapping("/{id}/upload-img")
+    public ResponseEntity<ProductDto> uploadImage(@PathVariable Long id, @RequestParam("file")MultipartFile file)throws IOException {
+        return ResponseEntity.ok(productService.uploadImage(id,file));
+    }
+
+
 
 }
